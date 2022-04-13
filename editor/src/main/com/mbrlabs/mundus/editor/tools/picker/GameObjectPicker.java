@@ -57,6 +57,12 @@ public class GameObjectPicker extends BasePicker {
                 if (id == child.id) return child;
             }
         }
+        for (GameObject go : scene.sceneGraph.getTerrains()) {
+            if (id == go.id) return go;
+            for (GameObject child : go) {
+                if (id == child.id) return child;
+            }
+        }
 
         return null;
     }
@@ -64,6 +70,9 @@ public class GameObjectPicker extends BasePicker {
     private void renderPickableScene(SceneGraph sceneGraph) {
         sceneGraph.batch.begin(sceneGraph.scene.cam);
         for (GameObject go : sceneGraph.getGameObjects()) {
+            renderPickableGameObject(go);
+        }
+        for (GameObject go : sceneGraph.getTerrains()) {
             renderPickableGameObject(go);
         }
         sceneGraph.batch.end();

@@ -340,10 +340,13 @@ public class ProjectManager implements Disposable {
         for (GameObject go : sceneGraph.getGameObjects()) {
             initGameObject(context, go);
         }
+        for (GameObject go : sceneGraph.getTerrains()) {
+            initGameObject(context, go);
+        }
 
         // create TerrainGroup for active scene
         Array<Component> terrainComponents = new Array<>();
-        for (GameObject go : sceneGraph.getGameObjects()) {
+        for (GameObject go : sceneGraph.getTerrains()) {
             go.findComponentsByType(terrainComponents, Component.Type.TERRAIN, true);
         }
         for (Component c : terrainComponents) {

@@ -29,6 +29,7 @@ import java.util.Iterator;
 public class GameObject extends SimpleNode<GameObject> implements Iterable<GameObject> {
 
     public static final String DEFAULT_NAME = "GameObject";
+    public static final String TAG_TERRAIN = "terrain";
 
     public String name;
     public boolean active;
@@ -239,6 +240,10 @@ public class GameObject extends SimpleNode<GameObject> implements Iterable<GameO
     @Override
     public Iterator<GameObject> iterator() {
         return new DepthFirstIterator(this);
+    }
+
+    public boolean isTerrain() {
+        return findComponentByType(Component.Type.TERRAIN) != null;
     }
 
     @Override

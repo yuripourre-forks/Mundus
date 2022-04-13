@@ -28,6 +28,7 @@ public class SceneDTO {
     private long id;
     private String name;
     private List<GameObjectDTO> gameObjects;
+    private List<GameObjectDTO> terrains;
     private FogDTO fog;
     private BaseLightDTO ambientLight;
     private float camPosX;
@@ -39,6 +40,7 @@ public class SceneDTO {
 
     public SceneDTO() {
         gameObjects = new ArrayList<>();
+        terrains = new ArrayList<>();
     }
 
     public long getId() {
@@ -127,5 +129,13 @@ public class SceneDTO {
 
     public void setGameObjects(List<GameObjectDTO> gameObjects) {
         this.gameObjects = gameObjects;
+    }
+
+    public List<GameObjectDTO> getTerrains() {
+        return terrains;
+    }
+
+    public void setTerrains(List<GameObjectDTO> terrains) {
+        this.terrains = terrains;
     }
 }

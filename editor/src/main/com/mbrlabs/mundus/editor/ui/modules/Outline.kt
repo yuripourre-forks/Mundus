@@ -267,6 +267,9 @@ class Outline : VisTable(),
         for (go in sceneGraph.gameObjects) {
             addGoToTree(null, go)
         }
+        for (go in sceneGraph.terrains) {
+            addGoToTree(null, go)
+        }
     }
 
     /**
@@ -417,6 +420,8 @@ class Outline : VisTable(),
 
                         val terrainGO = createTerrainGO(sceneGraph,
                                 Shaders.terrainShader, goID, name, asset)
+                        terrainGO.addTag(GameObject.TAG_TERRAIN)
+
                         // update sceneGraph
                         sceneGraph.addGameObject(terrainGO)
                         // update outline

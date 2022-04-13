@@ -48,6 +48,9 @@ public class SceneConverter {
         for (GameObject go : scene.sceneGraph.getGameObjects()) {
             dto.getGameObjects().add(GameObjectConverter.convert(go));
         }
+        for (GameObject go : scene.sceneGraph.getTerrains()) {
+            dto.getTerrains().add(GameObjectConverter.convert(go));
+        }
 
         // environment stuff
         dto.setFog(FogConverter.convert(scene.environment.getFog()));
@@ -83,6 +86,9 @@ public class SceneConverter {
         // scene graph
         scene.sceneGraph = new SceneGraph(scene);
         for (GameObjectDTO descriptor : dto.getGameObjects()) {
+            scene.sceneGraph.addGameObject(GameObjectConverter.convert(descriptor, scene.sceneGraph, assets));
+        }
+        for (GameObjectDTO descriptor : dto.getTerrains()) {
             scene.sceneGraph.addGameObject(GameObjectConverter.convert(descriptor, scene.sceneGraph, assets));
         }
 

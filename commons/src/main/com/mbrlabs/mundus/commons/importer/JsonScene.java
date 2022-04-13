@@ -26,6 +26,7 @@ public class JsonScene {
     public static final String ID = "id";
     public static final String NAME = "name";
     public static final String GAME_OBJECTS = "gos";
+    public static final String TERRAIN_OBJECTS = "ter";
 
     // GameObject
     public static final String GO_ID = "i";

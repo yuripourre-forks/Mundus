@@ -43,6 +43,9 @@ public class SceneConverter {
         for (GameObjectDTO descriptor : dto.getGameObjects()) {
             scene.sceneGraph.addGameObject(GameObjectConverter.convert(descriptor, scene.sceneGraph, shaders, assetManager));
         }
+        for (GameObjectDTO descriptor : dto.getTerrains()) {
+            scene.sceneGraph.addGameObject(GameObjectConverter.convert(descriptor, scene.sceneGraph, shaders, assetManager));
+        }
 
         return scene;
     }

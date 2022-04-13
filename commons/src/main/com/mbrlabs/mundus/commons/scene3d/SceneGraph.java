@@ -28,6 +28,7 @@ import com.mbrlabs.mundus.commons.Scene;
 public class SceneGraph {
 
     protected GameObject root;
+    protected Array<GameObject> terrains;
 
     public Scene scene;
     public ModelBatch batch;
@@ -38,6 +39,9 @@ public class SceneGraph {
         root = new GameObject(this, null, -1);
         root.initChildrenArray();
         root.active = false;
+
+        terrains = new Array<>(0);
+
         this.scene = scene;
     }
 
@@ -50,6 +54,9 @@ public class SceneGraph {
         for (GameObject go : root.getChildren()) {
             go.render(delta);
         }
+        for (GameObject terrain : terrains) {
+            terrain.render(delta);
+        }
         batch.end();
     }
 
@@ -61,13 +68,24 @@ public class SceneGraph {
         for (GameObject go : root.getChildren()) {
             go.update(delta);
         }
+        for (GameObject go : terrains) {
+            go.update(delta);
+        }
     }
 
     public Array<GameObject> getGameObjects() {
         return root.getChildren();
     }
 
+    public Array<GameObject> getTerrains() {
+        return terrains;
+    }
+
     public void addGameObject(GameObject go) {
+        if (go.isTerrain()) {
+           terrains.add(go);
+           return;
+        }
         root.addChild(go);
     }
 
